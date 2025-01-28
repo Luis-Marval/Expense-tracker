@@ -1,0 +1,5 @@
+node_modules/*
+hola.ts
+Expense.json
+ExpenseBack.json
+package-lock.json

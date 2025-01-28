@@ -1,0 +1,17 @@
+{
+  "name": "Expense tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx index.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.6"
+  },
+  "packageManager": "pnpm@9.15.4"
+}
