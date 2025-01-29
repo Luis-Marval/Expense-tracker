@@ -51,6 +51,11 @@ switch (command) {
       }
     }
   break;
+  case 'update':
+    const id = parseInt(process.argv[3]);
+    console.log(process.argv)
+
+  break
 }
 
 function mount(month:string):number{
