@@ -1,5 +1,5 @@
 {
-  "name": "Expense tracker",
+  "name": "expense-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,6 +7,7 @@
     "start": "tsx index.js"
   },
   "type": "module",
+  "bin": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",

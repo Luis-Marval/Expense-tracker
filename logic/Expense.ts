@@ -1,7 +1,7 @@
 import fs from "node:fs/promises"
-import { ExpenseList,ExpenseFalse,Traser } from "./Info.js"
+import { ExpenseList,ExpenseFalse,Traser,Args } from "./Info.js"
 
-export class Expense{
+export class Expense implements Traser{
   constructor(){}
 
   async add(description:string,amount:number): Promise<number>{
@@ -41,16 +41,16 @@ export class Expense{
     return false
   }
 
-  async update(id:number,description?:string,amount?:number):Promise<true | false>{
+  async update(id:number,datos:Args):Promise<true | false>{
     let ExpenseList:ExpenseFalse = await this.load()
     if(!ExpenseList){
       return false
     }
-    if(description){
-      ExpenseList[id].description = description
+    if(datos.description){
+      ExpenseList[id-1].description = datos.description
     }    
-    if(amount){
-      ExpenseList[id].amount = amount
+    if(datos.amount){
+      ExpenseList[id-1].amount = datos.amount
     }
     const data = JSON.stringify({ ExpenseList })
     await fs.writeFile("./Expense.json",Buffer.from(data))
@@ -100,7 +100,8 @@ export class Expense{
     if(!ExpenseList){
       return false
     }
-    ExpenseList.splice(id,1)
+    ExpenseList.splice(id-1,1)
+    console.log(ExpenseList)
     const data = JSON.stringify({ ExpenseList }) 
     await fs.writeFile("./Expense.json",Buffer.from(data))
     return true

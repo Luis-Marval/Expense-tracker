@@ -3,3 +3,6 @@ hola.ts
 Expense.json
 ExpenseBack.json
 package-lock.json
+test/jest.test.ts
+jest.config.js
+pnpm-lock.yaml

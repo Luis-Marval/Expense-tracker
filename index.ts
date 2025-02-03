@@ -1,21 +1,22 @@
 import { Expense } from "./logic/Expense.js";
+import { Args } from "./logic/Info.js"
 
-const hola = new Expense();
+const expense = new Expense();
 
-const command = process.argv[2];
+const command = process.argv[2].toLowerCase();
 
 switch (command) {
   case "add": 
     const amount = parseInt(process.argv[6]);
     if(process.argv[3] == "--description" && typeof process.argv[4] === "string" && process.argv[5] == "--amount" && typeof amount === 'number'){
-      const result = await hola.add(process.argv[4], amount);
+      const result = await expense.add(process.argv[4], amount);
       console.log(`Expense added successfully (ID: ${result})`)
     }else{
       console.log("Ingrese la descripcion y el monto de la transaccion")
     }
   break;
   case "list":
-    const list = await hola.list();
+    const list = await expense.list();
     if(!list === false){
       console.log(`# Id Date Description Amount`)
       list.map(element => {
@@ -32,7 +33,7 @@ switch (command) {
         console.log('Ingrese un mes valido')
       }
       if( month > 0 &&  month < 13){
-        const summary = await hola.summary(month);
+        const summary = await expense.summary(month);
         if(!summary === false){
           
           console.log(`# Total expenses for ${String(process.argv[4]).charAt(0).toUpperCase() +String(process.argv[4]).slice(1)}: $${summary}\n`)
@@ -43,7 +44,7 @@ switch (command) {
         console.log('Ingrese un mes valido')
       }
     }else{
-      const summary = await hola.summary();
+      const summary = await expense.summary();
       if(!summary === false){
         console.log(`# Total expenses: $${summary}\n`)
       }else{
@@ -51,6 +52,16 @@ switch (command) {
       }
     }
   break;
+  case 'update':
+    const updateId = parseInt(process.argv[3]);
+    const updateData =  args(process.argv)
+    expense.update(updateId,updateData)
+  break
+  case 'delete':
+    const deleteId = parseInt(process.argv[3]);
+    console.log(await expense.delete(deleteId))
+
+  break
 }
 
 function mount(month:string):number{
@@ -69,4 +80,20 @@ function mount(month:string):number{
     case "december": return 12
     default: return NaN
   }
+}
+
+function args(args:string[]):Args{
+  const arr:Args = {}
+  for(const arg of args){
+    if(arg === "--description"){
+      arr['description'] = (args[args.indexOf(arg)+1]).toString()
+    }
+    if(arg === "--amount"){
+      arr['amount'] = parseInt(args[args.indexOf(arg)+1])
+    }
+    if(arg === "--category"){
+      arr['amount'] = parseInt(args[args.indexOf(arg)+1])
+    }
+  }
+  return arr
 }
