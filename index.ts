@@ -1,9 +1,17 @@
 import { Expense } from "./logic/Expense.js";
 import { Args } from "./logic/Info.js"
+import { help } from "./logic/help.js"
 
 const expense = new Expense();
 
+if(!process.argv[2] || process.argv[2].toLowerCase() == "help"){
+  const helpCommand = process.argv[3]
+  console.log(help(helpCommand))
+  process.exit(0)
+}
+
 const command = process.argv[2].toLowerCase();
+
 
 switch (command) {
   case "add": 
@@ -60,8 +68,9 @@ switch (command) {
   case 'delete':
     const deleteId = parseInt(process.argv[3]);
     console.log(await expense.delete(deleteId))
-
   break
+  default:
+    console.error("El comando ingresado no existe, coloque npm run expense help para ver los comandos\n")
 }
 
 function mount(month:string):number{

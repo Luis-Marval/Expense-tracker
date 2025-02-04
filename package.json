@@ -1,18 +1,21 @@
 {
   "name": "expense-tracker",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.4.0",
+  "description": "Una aplicación simple de seguimiento de gastos para administrar sus finanzas. La aplicación Permite a los usuarios agregar, eliminar y ver sus gastos. La solicitud también debe proporcionar un resumen de los gastos.",
   "main": "index.js",
   "scripts": {
-    "start": "tsx index.js"
+    "Expense": "tsx index.js"
   },
   "type": "module",
   "bin": "index.js",
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "expense",
+    "typescript",
+    "tracker"
+  ],
+  "author": "Luis Marval <luismarval5a@hotmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.10.6"
-  },
-  "packageManager": "pnpm@9.15.4"
+    "@types/node": "22.10.6"
+  }
 }
